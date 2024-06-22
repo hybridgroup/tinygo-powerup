@@ -67,8 +67,8 @@ func (a *Airplane) Stop() (err error) {
 }
 
 // Throttle sets the throttle of the Airplane.
-func (a *Airplane) Throttle(thrust uint8) (err error) {
-	buf := []byte{thrust}
+func (a *Airplane) Throttle(thrust int) (err error) {
+	buf := []byte{uint8(thrust)}
 	_, err = a.motor.WriteWithoutResponse(buf)
 
 	return err
@@ -76,7 +76,7 @@ func (a *Airplane) Throttle(thrust uint8) (err error) {
 
 // Rudder sets the rudder of the Airplane.
 // angle goes from -45 to 45.
-func (a *Airplane) Rudder(angle int8) (err error) {
+func (a *Airplane) Rudder(angle int) (err error) {
 	buf := []byte{byte(angle)}
 	_, err = a.rudder.WriteWithoutResponse(buf)
 
